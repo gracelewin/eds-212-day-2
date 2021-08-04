@@ -58,6 +58,52 @@ d2G_dt2 = D(expr = dG_dt, 'z')
 d2G_dt2
 ```
 
+## Partial Derivatives
 
+```{r}
+f_xyz <- expression((2 * x^2 * y) - (3 * x) + 1 + (4*z^4*x))
+
+df_dx_ = D(expr = f_xyz, 'x')
+df_dx_
+
+df_dy = D(expr = f_xyz, 'y')
+df_dy
+
+
+df_dz = D(expr = f_xyz, 'z')
+df_dz
+```
+
+# Section 4: Make some plots
+
+```{r}
+
+eq <- function(x) {
+  
+  2.4 * (exp(-0.05*x))*sin(x)
+  
+}
+
+ggplot(data = data.frame(x = c(-0.5, 0.5)), aes(x = x)) +
+  stat_function(fun = eq)
+```
+
+
+```{r}
+ggplot(data = penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point(aes(color = species)) +
+  labs(x = "Bill Depth (mm)", 
+       y = "Bill Length (mm)",
+       title = "Palmer penguins bill length vs. bill depth")
+```
+
+
+```{r}
+ggplot(data = penguins, aes(x = species, y = flipper_length_mm)) +
+  geom_jitter(aes(color = species)) +
+  labs(x = "Species", 
+       y = "Flipper Length (mm)",
+       title = "Palmer penguins flipper length by species")
+```
 
 
